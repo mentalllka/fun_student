@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Студенты — учебный журнал</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="style.css">
+    <script src="app.js" defer></script>
+</head>
+<body>
+    <header class="header">
+        <a class="brand" href="/">с<span>.</span> студенты</a>
+        <span class="header-note">Учебный журнал</span>
+        <button id="logout" class="secondary" hidden>Выйти</button>
+    </header>
+
+    <main>
+        <section id="login-view" class="login-layout">
+            <div class="intro">
+                <span class="eyebrow">FUN STUDENT / УЧЕБНЫЙ ПРОЕКТ</span>
+                <h1>Всё о студентах.<br><span>В одном месте.</span></h1>
+                <p>Список студентов, контакты и управление записями. Войдите в свою учётную запись, чтобы начать работу.</p>
+                <div class="intro-line">Простой журнал для повседневных задач</div>
+            </div>
+            <section class="panel login-panel">
+                <span class="eyebrow">ДОБРО ПОЖАЛОВАТЬ</span>
+                <h2>Вход в журнал</h2>
+                <p class="muted">Используйте выданные вам email и пароль.</p>
+                <form id="login-form">
+                    <label>Email<input name="email" type="email" autocomplete="username" placeholder="admin@example.com" required></label>
+                    <label>Пароль<input name="password" type="password" autocomplete="current-password" placeholder="Введите пароль" required></label>
+                    <button type="submit" class="primary wide">Войти в журнал →</button>
+                </form>
+                <p id="login-error" class="error" role="alert"></p>
+                <p class="login-foot">Доступные действия зависят от вашей роли.</p>
+            </section>
+        </section>
+
+        <section id="workspace" hidden>
+            <div class="page-heading">
+                <div><span class="eyebrow" id="account"></span><h1 id="page-title">Студенты</h1><p id="page-description" class="muted"></p></div>
+                <div class="role-badge" id="role-badge"></div>
+            </div>
+            <nav id="sections" class="sections" aria-label="Разделы" hidden>
+                <button id="students-tab" class="secondary">Студенты</button>
+                <button id="users-tab" class="secondary">Пользователи</button>
+            </nav>
+            <div class="toolbar panel">
+                <label class="search-label"><span class="sr-only">Поиск</span><input id="search" type="search" placeholder="Найти по имени, фамилии или ID…"></label>
+                <button id="refresh" class="secondary">Обновить</button>
+                <button id="add" class="primary">+ Добавить студента</button>
+            </div>
+            <div class="list-top"><h2 id="list-title">Список студентов</h2><span id="count" class="muted" aria-live="polite"></span></div>
+            <div id="notice" role="status" class="notice" hidden></div>
+            <div class="panel table-panel">
+                <div class="table-scroll"><table>
+                    <thead id="table-head"></thead>
+                    <tbody id="table-body"></tbody>
+                </table></div>
+                <div id="empty" class="empty" hidden><h3>Здесь пока пусто</h3><p class="muted">Добавьте запись или измените поисковый запрос.</p></div>
+            </div>
+            <p class="table-foot" id="table-foot"></p>
+        </section>
+    </main>
+    <footer>Студенты <span>Учебный проект · HTML / CSS / JavaScript</span></footer>
+
+    <dialog id="editor" aria-labelledby="dialog-title">
+        <div class="dialog-heading"><h2 id="dialog-title"></h2><button id="close-dialog" class="icon-button" aria-label="Закрыть">×</button></div>
+        <p id="dialog-description" class="muted"></p>
+        <form id="editor-form">
+            <div id="student-fields">
+                <div class="form-row">
+                    <label>Имя<input name="name" maxlength="100" required></label>
+                    <label>Фамилия<input name="surname" maxlength="100" required></label>
+                </div>
+                <label>Телефон<input name="phoneNumber" type="tel" maxlength="50" placeholder="+7 900 123-45-67"></label>
+            </div>
+            <label>Email<input name="email" type="email" maxlength="254" required></label>
+            <label id="password-label">Пароль<input name="password" type="password" autocomplete="new-password" required></label>
+            <fieldset id="roles-field"><legend>Роли (хотя бы одна)</legend>
+                <label class="check"><input type="checkbox" name="roles" value="TEACHER">Преподаватель</label>
+                <label class="check"><input type="checkbox" name="roles" value="ADMIN">Администратор</label>
+                <label class="check"><input type="checkbox" name="roles" value="SUPER_ADMIN">Суперадминистратор</label>
+            </fieldset>
+            <p id="form-error" class="error" role="alert"></p>
+            <div class="dialog-actions"><button type="button" id="cancel" class="secondary">Отмена</button><button type="submit" id="save" class="primary">Сохранить</button></div>
+        </form>
+    </dialog>
+</body>
+</html>
