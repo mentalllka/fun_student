@@ -1,0 +1,18 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:student_tests;MODE=PostgreSQL;DB_CLOSE_DELAY=-1
+    driver-class-name: org.h2.Driver
+    username: sa
+    password: ""
+    hikari:
+      schema: PUBLIC
+      connection-init-sql: SELECT 1
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        default_schema: PUBLIC
+logging:
+  level:
+    com.example.student.exception.GlobalExceptionHandler: OFF
